@@ -11,16 +11,7 @@
 <body>
     <div class="nav-bar"></div>
     <div id="app">
-        <div class="product">
-            <div class="product-image">
-                <img :src="image" alt="VueSocks">
-            </div>
-            <div class="product-info">
-                <h1>{{ product }}</h1>
-                <p v-if="inStock">In Stock</p>
-                <p v-else>Out of Stock</p>
-            </div>
-        </div>
+        <product :premium="premium"></product>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
