@@ -27,9 +27,7 @@ Vue.component('product', {
                     Add to Cart
                 </button>
 
-                <div class="cart">
-                    <p>Cart {{cart}}</p>
-                </div>
+                
             </div>
         </div>
     `,
@@ -53,11 +51,10 @@ Vue.component('product', {
                     variantQuantity: 0,
                 }
             ],
-            cart: 0,
         }
     },
     methods: {
-        addToCart: function () { this.cart++ },
+        addToCart: function () { this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId) },
         updateProductImage: function (index) {
             this.selectedVariant = index;
         }
@@ -73,7 +70,7 @@ Vue.component('product', {
             return this.variants[this.selectedVariant].variantQuantity;
         },
         shipping() {
-           return this.premium ? "Free" : "2.99" ;
+            return this.premium ? "Free" : "2.99";
         }
     }
 })
@@ -81,6 +78,12 @@ Vue.component('product', {
 let app = new Vue({
     el: '#app',
     data: {
-        premium: false
+        premium: false,
+        cart: [],
+    },
+    methods: {
+        updateCart: function (id) {
+            this.cart.push(id);
+        }
     }
 })
